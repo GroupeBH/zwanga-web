@@ -1,9 +1,65 @@
+:root {
+  color-scheme: light;
+  --font-body: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --font-display: var(--font-serif), "Instrument Serif", Georgia, serif;
+  --color-bg: #fbfaf6;
+  --color-surface: #ffffff;
+  --color-surface-soft: rgba(255, 255, 255, 0.78);
+  --color-panel: #ffffff;
+  --color-panel-muted: #f3f1ea;
+  --color-field: #ffffff;
+  --color-field-hover: #f7f6f1;
+  --color-border: rgba(17, 17, 16, 0.09);
+  --color-border-strong: rgba(17, 17, 16, 0.18);
+  --color-text: #111110;
+  --color-text-muted: #5f5e58;
+  --color-primary: #ff6a00;
+  --color-primary-strong: #e55a00;
+  --color-primary-soft: #fff1e6;
+  --color-secondary: #0284c7;
+  --color-success: #12945f;
+  --color-danger: #d62839;
+  --color-warning: #a67a00;
+  --color-ink: #111110;
+  --color-subtle: rgba(17, 17, 16, 0.03);
+  --color-hover: rgba(17, 17, 16, 0.05);
+  --color-line: rgba(17, 17, 16, 0.08);
+  --color-on-primary: #ffffff;
+  --color-focus: rgba(255, 106, 0, 0.45);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-card: 0 1px 2px rgba(17, 17, 16, 0.04), 0 1px 1px rgba(17, 17, 16, 0.02);
+  --shadow-panel: 0 1px 2px rgba(17, 17, 16, 0.05), 0 24px 60px -24px rgba(17, 17, 16, 0.22);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html,
 body {
-  min-height: 100vh;
   padding: 0;
   margin: 0;
-  font-family: system-ui, sans-serif;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  font-variant-numeric: tabular-nums;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
 }
 
 a {
@@ -11,6 +67,108 @@ a {
   text-decoration: none;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+
+button,
+[role="button"],
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+@media (pointer: coarse) {
+  button,
+  select,
+  input,
+  textarea {
+    font-size: max(1rem, 16px);
+  }
+}
+
+/* Lien d'evitement: un clavier atteint le contenu sans traverser 30 liens. */
+.skip-link {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 200;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-weight: 700;
+  transform: translateY(-160%);
+  transition: transform 0.18s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+main:focus {
+  outline: none;
+}
+
+/* Un tableau ou une liste en defilement horizontal garde une barre fine. */
 * {
-  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-strong) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Apparition au défilement: les éléments [data-reveal] montent doucement en vue. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal][data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
 }
