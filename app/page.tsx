@@ -1429,7 +1429,7 @@ export default function HomePage() {
             <div className={styles.footerSection}>
               <h4 className={styles.footerTitle}>Contact</h4>
               <a href="mailto:contact@biso-tech.org">contact@biso-tech.org</a>
-              <a href="tel:+243999403012">+243 999 403 012</a>
+              <a href="tel:+243821582462">+243 821 582 462</a>
             </div>
           </div>
           <div className={styles.footerBottom}>

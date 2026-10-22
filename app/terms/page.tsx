@@ -353,7 +353,7 @@ export default function TermsPage() {
                 <br />
                 Support : <a href="mailto:support@zwanga.com">support@zwanga.com</a>
                 <br />
-                Téléphone : +243999403012
+                Téléphone : +243821582462
               </p>
             </div>
           </section>
